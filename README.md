@@ -1,4 +1,4 @@
-# CDM-M3-CD-Mechanism-Module-Reverse-Engiinering
+# CDM-M3-CD-Mechanism-Module-Reverse-Engineering
 CDM-M3 CD Module decoding I2C control
 
 Here you can find some of the I2C communication decoded for this module:
