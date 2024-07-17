@@ -17,3 +17,6 @@ CDin:
 	CDin0: 0x01,
 	CDin1: 0x03,
 
+
+
+Screenshot 2024-07-13 141032.png
