@@ -1,0 +1,148 @@
+
+
+
+20 Status, 
+04 20 04 03 27 // 4 Tracks CD ready
+09 41 22 E0 14 63 2C 1F 10 15 // Playing
+0C 47 02 01 00 04 56 00 00 01 41 62 48 / Track 
+03 4F 03 52 // Track 3
+
+Commands: 
+20: Track#, Status
+
+When pressing mode to switch on the cd-player i get this : 
+
+write to 18 ack data: 32 00 04 56 00 
+04 20 04 03 27 // 4 Tracks CD ready
+04 20 04 03 27 // CD playing 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing 
+0C 47 02 01 00 04 56 00 00 01 41 62 48 
+
+when pressing mode again to switch to the FM radio i get this: 
+write to 18 ack data: 1E 
+04 20 04 03 27 // CD Ready
+04 20 01 03 24 // CD status stopped
+09 41 01 E0 14 63 2C 1F 10 F4 // 
+0C 47 02 01 00 04 57 00 00 01 42 62 4A 
+
+
+
+Here, while the cd-player was on, i pressed next track three times with a 1-2 second gap:
+
+ 
+write to 18 ack data: 17 
+04 20 04 03 27 // CD Ready
+03 4F 03 52 // Track 3
+04 20 04 03 27 // CD Ready
+09 41 22 E0 14 63 2C 1F 10 15 // Playing
+0C 47 03 01 00 05 55 72 00 00 00 08 1F 
+0C 47 03 01 00 05 56 00 00 00 00 11 B7 
+0C 47 03 01 00 05 57 00 00 00 01 11 B9
+ 
+write to 18 ack data: 17 
+04 20 04 03 27 // CD Ready
+03 4F 04 53 // Track 4
+04 20 04 03 27 // CD Ready 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing 
+0C 47 04 01 00 09 24 14 00 00 00 02 8F 
+0C 47 04 01 00 09 25 00 00 00 00 63 DD
+ 
+write to 18 ack data: 17 
+04 20 04 03 27 // CD Ready
+03 4F 05 54 // Track 5
+04 20 04 03 27 // CD Ready 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing 
+0C 47 05 01 00 12 55 24 00 00 00 01 D9 // Track 5 time elapsed time 
+0C 47 05 01 00 12 56 00 00 00 00 52 07 // Track time elapsed time 
+0C 47 05 01 00 12 57 00 00 00 01 52 09 // Track time elapsed time 
+ 
+
+
+Here, while the cd-player was on, i pressed previous track three times with a 1-2 second gap:
+ 
+write to 18 ack data: 18 
+04 20 04 03 27 // CD Ready
+03 4F 04 53 // Track 4
+04 20 04 03 27 // CD Ready 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing 
+0C 47 04 01 00 09 24 20 00 00 00 08 A1 // Track time elapsed time 
+0C 47 04 01 00 09 25 00 00 00 00 63 DD // Track time elapsed time 
+0C 47 04 01 00 09 26 00 00 00 01 63 DF // Track time elapsed time 
+
+write to 18 ack data: 18 
+04 20 04 03 27 // CD Ready
+03 4F 03 52 // Track 3
+04 20 04 03 27 // CD Ready 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing 
+0C 47 03 01 00 05 55 73 00 00 00 09 21 // Track time elapsed time
+0C 47 03 01 00 05 56 00 00 00 00 11 B7 // Track time elapsed time 
+0C 47 03 01 00 05 57 00 00 00 01 11 B9
+ 
+write to 18 ack data: 18 
+04 20 04 03 27 // CD Ready
+03 4F 02 51 // Track 2 // Track 2
+04 20 04 03 27 // CD Ready 
+09 41 22 E0 14 63 2C 1F 10 15 // Playing
+0C 47 02 01 00 03 14 22 00 00 00 09 8C // Track time elapsed time
+0C 47 02 01 00 03 15 00 00 00 00 62 C4 // Track time elapsed time
+
+
+Power on with cd inside - not autoplaying - FM mode
+
+write to 18 nak
+1D
+read to 18 ack data: 03 11 33 44
+read to 18 ack data: 0C 14 96 0B 43 4D 33 30 34 33 30 36 75
+read to 18 ack data: 04 20 01 03 24
+write to 18 ack data: 82
+read to 18 ack data: 0D 30 00 00 0A 0E 28 3E 0A 00 00 0A 01 C3
+write to 18 ack data: 3F 7E
+read to 18 ack data: 0D 30 00 00 0A 0E 28 7E 0A 00 00 0A 01 03
+
+
+
+
+
+
+
+Power on without cd inside:
+
+write to 18 nak
+1D
+read to 18 ack data: 03 11 33 44
+read to 18 ack data: 0C 14 96 0B 43 4D 33 30 34 33 30 36 75
+read to 18 ack data: 04 20 01 02 23
+write to 18 ack data: 82
+read to 18 ack data: 0D 30 00 00 0A 0E 28 3E 0A 00 00 0A 01 C3
+write to 18 ack data: 3F 7E
+read to 18 ack data: 0D 30 00 00 0A 0E 28 7E 0A 00 00 0A 01 03
+
+
+Eject pressed without cd inside:
+
+write to 18 ack data: 11
+read to 18 ack data: 03 13 02 15
+read to 18 ack data: 04 20 01 02 23
+
+CD Ready Messages(0x20): (0x04, StatusCMD, Play_Status, CDin, CHK)
+Play_Status:
+	Not_Playing: 0x01,
+	Playing: 0x04,
+	
+CDin:
+	CDin0: 0x01,
+	CDin1: 0x03,
+	
+
+
+04 20 01 03 24 // Not playing, CD inside
+04 20 01 02 23 // Not playing, NOCD
+04 20 04 03 27 // Playing, CDIN, 
+
+Media_Status(0x04, 0x20): (Play_Status, CDin, CKS)
+Track Number: (03, 4F): (Track#, CKS)
+Playing: (09, 41, 22 E0 14 63 2C 1F 10 CKS)
+Playing_Track(0C, 47): (03 01 00 Track# 55 72 00 00 00 08 CKS)
+
+
+
